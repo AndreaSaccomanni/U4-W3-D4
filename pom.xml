@@ -3,8 +3,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>epicode</groupId>
-  <artifactId>u4d13</artifactId>
+  <groupId>org.example</groupId>
+  <artifactId>U4_W3_D4_ereditarieta</artifactId>
   <version>1.0-SNAPSHOT</version>
 
   <properties>
@@ -30,7 +30,7 @@
     <dependency>
       <groupId>org.postgresql</groupId>
       <artifactId>postgresql</artifactId>
-      <version>42.7.1</version>
+      <version>42.6.0</version>
     </dependency>
     <!--
 https://mvnrepository.com/artifact/com.github.javafaker/javafaker

@@ -5,31 +5,19 @@ import org.example.dao.EventoDAO;
 import org.example.dao.LocationDAO;
 import org.example.dao.PartecipazioneDAO;
 import org.example.dao.PersonaDAO;
-import org.example.entities.Evento;
 import org.example.entities.Location;
-import org.example.entities.Partecipazione;
-import org.example.entities.Persona;
-import org.example.enumeration.TipoEvento;
-import org.example.enumeration.TipoSesso;
-import org.example.enumeration.TipoStato;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import java.time.LocalDate;
 import java.util.Locale;
-import java.util.Random;
 
-/**
- * Hello world!
- *
- */
 public class Main {
 
-    private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("GestioneEventi");
+    private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("ereditarieta");
     private static EntityManager em = emf.createEntityManager();
 
-    public static void main( String[] args ) {
+    public static void main(String[] args) {
         EventoDAO eventoDao = new EventoDAO(em);
         LocationDAO locationDao = new LocationDAO(em);
         PersonaDAO personaDao = new PersonaDAO(em);
@@ -37,8 +25,8 @@ public class Main {
 
         Faker faker = new Faker(Locale.ITALY);
 
-        //Location l1 = new Location(faker.name().name(), faker.address().city());
-        //locationDao.save(l1);
+        Location l1 = new Location(faker.name().name(), faker.address().city());
+        locationDao.save(l1);
 
         //Persona p1 = new Persona(faker.name().firstName(), faker.name().lastName(),faker.internet().emailAddress(),LocalDate.of(1980, 10, 25), TipoSesso.F);
         //personaDao.save(p1);
@@ -50,7 +38,6 @@ public class Main {
         //partecipazioneDao.save(p1);
 
     }
-
 
 
 }
