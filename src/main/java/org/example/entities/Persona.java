@@ -1,44 +1,47 @@
 package org.example.entities;
 
+import org.example.enumeration.TipoSesso;
+
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "persone")
-public class Person {
+public class Persona {
+
 	@Id
 	@GeneratedValue
 	private long id;
 	private String nome;
 	private String cognome;
+	@Column(unique = true)
 	private String email;
-	private LocalDate data_di_nascita;
-	private char sesso;
-
-	@ManyToMany
-	private Set<GaraDiAtletica> gareDiAtletica;
-
-
+	private LocalDate dataDiNascita;
+	@Enumerated(EnumType.STRING)
+	private TipoSesso sesso;
 	@OneToMany(mappedBy = "persona")
-	private List<Attendance> listaPartecipazioni;
+	private List<Partecipazione> listaPartecipazioni;
 
-	public Person() {
-	}
+	public Persona() { }
 
-	public Person(String nome, String cognome, String email, LocalDate data_di_nascita, char sesso) {
+	public Persona(String nome, String cognome, String email, LocalDate dataDiNascita, TipoSesso sesso) {
 		this.nome = nome;
 		this.cognome = cognome;
 		this.email = email;
-		this.data_di_nascita = data_di_nascita;
+		this.dataDiNascita = dataDiNascita;
 		this.sesso = sesso;
+		this.listaPartecipazioni = new ArrayList<Partecipazione>();
 	}
 
 	public long getId() {
 		return id;
 	}
 
+	public void setId(long id) {
+		this.id = id;
+	}
 
 	public String getNome() {
 		return nome;
@@ -64,29 +67,28 @@ public class Person {
 		this.email = email;
 	}
 
-	public LocalDate getData_di_nascita() {
-		return data_di_nascita;
+	public LocalDate getDataDiNascita() {
+		return dataDiNascita;
 	}
 
-	public void setData_di_nascita(LocalDate data_di_nascita) {
-		this.data_di_nascita = data_di_nascita;
+	public void setDataDiNascita(LocalDate dataDiNascita) {
+		this.dataDiNascita = dataDiNascita;
 	}
 
-	public char getSesso() {
+	public TipoSesso getSesso() {
 		return sesso;
 	}
 
-	public void setSesso(char sesso) {
+	public void setSesso(TipoSesso sesso) {
 		this.sesso = sesso;
 	}
 
-	public List<Attendance> getListaPartecipazioni() {
+	public List<Partecipazione> getListaPartecipazioni() {
 		return listaPartecipazioni;
 	}
 
-	public void setListaPartecipazioni(List<Attendance> lista_partecipazioni) {
-		this.listaPartecipazioni = lista_partecipazioni;
-
+	public void setListaPartecipazioni(List<Partecipazione> listaPartecipazioni) {
+		this.listaPartecipazioni = listaPartecipazioni;
 	}
 
 	@Override
@@ -96,8 +98,9 @@ public class Person {
 				", nome='" + nome + '\'' +
 				", cognome='" + cognome + '\'' +
 				", email='" + email + '\'' +
-				", data_di_nascita=" + data_di_nascita +
+				", dataDiNascita=" + dataDiNascita +
 				", sesso=" + sesso +
+				", listaPartecipazioni=" + listaPartecipazioni +
 				'}';
 	}
 }

@@ -1,59 +1,62 @@
 package org.example.entities;
 
+import org.example.enumeration.TipoStato;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "partecipazioni")
-public class Attendance {
+public class Partecipazione {
+
 	@Id
 	@GeneratedValue
 	private long id;
-
 	@ManyToOne
 	@JoinColumn(name = "persona_id")
-	private Person persona;
-
+	private Persona persona;
 	@ManyToOne
 	@JoinColumn(name = "evento_id")
-	private Event evento;
+	private Evento evento;
 	@Enumerated(EnumType.STRING)
-	private Stato stato;
+	private TipoStato stato;
 
-	public Attendance() {
-	}
+	public Partecipazione() { }
 
-	public Attendance(Person persona, Event evento) {
+	public Partecipazione(Persona persona, Evento evento, TipoStato stato) {
 		this.persona = persona;
 		this.evento = evento;
-		this.stato = Stato.DA_CONFERMARE;
+		this.stato = stato;
 	}
 
 	public long getId() {
 		return id;
 	}
 
+	public void setId(long id) {
+		this.id = id;
+	}
 
-	public Person getPersona() {
+	public Persona getPersona() {
 		return persona;
 	}
 
-	public void setPersona(Person persona) {
+	public void setPersona(Persona persona) {
 		this.persona = persona;
 	}
 
-	public Event getEvento() {
+	public Evento getEvento() {
 		return evento;
 	}
 
-	public void setEvento(Event evento) {
+	public void setEvento(Evento evento) {
 		this.evento = evento;
 	}
 
-	public Stato getStato() {
+	public TipoStato getStato() {
 		return stato;
 	}
 
-	public void setStato(Stato stato) {
+	public void setStato(TipoStato stato) {
 		this.stato = stato;
 	}
 

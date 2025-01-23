@@ -1,45 +1,51 @@
 package org.example.entities;
 
+import org.example.enumeration.TipoEvento;
+
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "eventi")
-@Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Event {
+public class Evento {
+
     @Id
     @GeneratedValue
     private long id;
-
+    @Column(nullable = false)
     private String titolo;
+    @Column(nullable = false)
     private LocalDate dataEvento;
     private String descrizione;
     @Enumerated(EnumType.STRING)
     private TipoEvento tipoEvento;
     private int numeroMassimoPartecipanti;
-
     @ManyToOne
-    @JoinColumn(name = "luogo_evento_id")
-    private Location luogoEvento;
+    @JoinColumn(name = "location_id")
+    private Location location;
+    @OneToMany(mappedBy = "evento")
+    private List<Partecipazione> listaPartecipazioni;
 
-    @OneToMany(mappedBy = "evento", cascade = CascadeType.REMOVE)
-    private List<Attendance> listaPartecipazioni;
+    public Evento() {}
 
-    public Event() {
-    }
-
-    public Event(String titolo, LocalDate dataEvento, String descrizione, TipoEvento tipoEvento, int numeroMassimoPartecipanti, Location location) {
+    public Evento(String titolo, LocalDate dataEvento, String descrizione, TipoEvento tipoEvento, int numeroMassimoPartecipanti, Location location) {
         this.titolo = titolo;
         this.dataEvento = dataEvento;
         this.descrizione = descrizione;
         this.tipoEvento = tipoEvento;
         this.numeroMassimoPartecipanti = numeroMassimoPartecipanti;
-        this.luogoEvento = location;
+        this.location = location;
+        this.listaPartecipazioni = new ArrayList<Partecipazione>();
     }
 
     public long getId() {
         return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getTitolo() {
@@ -82,16 +88,20 @@ public abstract class Event {
         this.numeroMassimoPartecipanti = numeroMassimoPartecipanti;
     }
 
-    public Location getLuogoEvento() {
-        return luogoEvento;
+    public Location getLocation() {
+        return location;
     }
 
-    public void setLuogoEvento(Location luogoEvento) {
-        this.luogoEvento = luogoEvento;
+    public void setLocation(Location location) {
+        this.location = location;
     }
 
-    public List<Attendance> getListaPartecipazioni() {
+    public List<Partecipazione> getListaPartecipazioni() {
         return listaPartecipazioni;
+    }
+
+    public void setListaPartecipazioni(List<Partecipazione> listaPartecipazioni) {
+        this.listaPartecipazioni = listaPartecipazioni;
     }
 
     @Override
@@ -103,7 +113,8 @@ public abstract class Event {
                 ", descrizione='" + descrizione + '\'' +
                 ", tipoEvento=" + tipoEvento +
                 ", numeroMassimoPartecipanti=" + numeroMassimoPartecipanti +
-                ", location=" + luogoEvento +
+                ", location=" + location +
+                ", listaPartecipazioni=" + listaPartecipazioni +
                 '}';
     }
 }

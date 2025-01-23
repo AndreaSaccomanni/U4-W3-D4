@@ -7,7 +7,7 @@ import javax.persistence.Table;
 import java.time.LocalDate;
 @Entity
 @Table(name = "concerti")
-public class Concerto extends Event{
+public class Concerto extends Evento {
     @Enumerated(EnumType.STRING)
     private genereConcerto genere;
     private boolean inStreaming;

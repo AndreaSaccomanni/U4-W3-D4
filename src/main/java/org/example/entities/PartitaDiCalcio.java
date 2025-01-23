@@ -6,7 +6,7 @@ import javax.persistence.Table;
 import java.time.LocalDate;
 @Entity
 @Table(name = "partite_di_calcio")
-public class PartitaDiCalcio extends Event{
+public class PartitaDiCalcio extends Evento {
 
     @Column(nullable = false)
     private String squadraDiCasa;
