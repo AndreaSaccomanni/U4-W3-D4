@@ -1,8 +1,14 @@
 package org.example.entities;
 
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.Table;
 import java.time.LocalDate;
-
+@Entity
+@Table(name = "concerti")
 public class Concerto extends Event{
+    @Enumerated(EnumType.STRING)
     private genereConcerto genere;
     private boolean inStreaming;
 

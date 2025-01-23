@@ -39,14 +39,15 @@ public class Main {
         Person persona1 = new Person(faker.name().firstName(), faker.name().lastName(), faker.internet().emailAddress(), LocalDate.now(), rndm.nextInt(0, 2) == 0 ? 'M' : 'F');
         //peopleDAO.save(persona1);
 
+        Event e1 = new Concerto("Vasco ROssi", LocalDate.of(2025, 1, 20), "ultimo concerto", )
 
-        PartitaDiCalcio partita1 = new PartitaDiCalcio("Inter vs Milan", LocalDate.of(2025, 1, 20), "derby", TipoEvento.PUBBLICO, 20000, location2, "Inter", "Milan", "Inter", 2, 0);
-        PartitaDiCalcio partita2 = new PartitaDiCalcio("Roma vs Lazio", LocalDate.of(2025, 2, 10), "derby", TipoEvento.PUBBLICO, 20000, location1, "Roma", "Lazio", "Roma", 2, 0);
-
-        System.out.println(partita1);
-
-        save(partita1);
-        save(partita2);
+//        PartitaDiCalcio partita1 = new PartitaDiCalcio("Inter vs Milan", LocalDate.of(2025, 1, 20), "derby", TipoEvento.PUBBLICO, 20000, location2, "Inter", "Milan", "Inter", 2, 0);
+//        PartitaDiCalcio partita2 = new PartitaDiCalcio("Roma vs Lazio", LocalDate.of(2025, 2, 10), "derby", TipoEvento.PUBBLICO, 20000, location1, "Roma", "Lazio", "Roma", 2, 0);
+//
+//        System.out.println(partita1);
+//
+//        PartitaDiCalcioDAO.save(partita1);
+//        PartitaDiCalcioDAO.save(partita2);
 
 
         // ******************** PARTECIPAZIONE AD UN EVENTO ************************

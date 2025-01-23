@@ -1,14 +1,16 @@
 package org.example.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.time.LocalDate;
 @Entity
-
+@Table(name = "partite_di_calcio")
 public class PartitaDiCalcio extends Event{
 
-
+    @Column(nullable = false)
     private String squadraDiCasa;
+    @Column(nullable = false)
     private String squadraOspite;
     private String squadraVincente;
     private int golSquadraCasa;

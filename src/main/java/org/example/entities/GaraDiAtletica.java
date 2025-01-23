@@ -1,18 +1,29 @@
 package org.example.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.List;
+import java.util.Set;
+import java.util.Set;
+
 @Entity
+
+
+@Table(name = "gare_di_atletica")
 public class GaraDiAtletica extends Event{
+
     @ManyToMany
-    private List<Person> atelti;
-    @OneToOne
+
+    @JoinTable(name="gare_atletica_persona",
+    joinColumns = @JoinColumn(name = "gare_id"),
+    inverseJoinColumns = @JoinColumn(name = "atleta_id"))
+
+    private Set<Person> atelti;
+
+    @ManyToOne
+    @JoinColumn(name = "vincitore")
     private Person vincitore;
 
-    public GaraDiAtletica(String titolo, LocalDate dataEvento, String descrizione, TipoEvento tipoEvento, int numeroMassimoPartecipanti, Location location, List<Person> atelti, Person vincitore) {
+    public GaraDiAtletica(String titolo, LocalDate dataEvento, String descrizione, TipoEvento tipoEvento, int numeroMassimoPartecipanti, Location location, Set<Person> atelti, Person vincitore) {
         super(titolo, dataEvento, descrizione, tipoEvento, numeroMassimoPartecipanti, location);
         this.atelti = atelti;
         this.vincitore = vincitore;
@@ -21,11 +32,11 @@ public class GaraDiAtletica extends Event{
     public GaraDiAtletica() {
     }
 
-    public List<Person> getAtelti() {
+    public Set<Person> getAtelti() {
         return atelti;
     }
 
-    public void setAtelti(List<Person> atelti) {
+    public void setAtelti(Set<Person> atelti) {
         this.atelti = atelti;
     }
 

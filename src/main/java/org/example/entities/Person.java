@@ -3,6 +3,7 @@ package org.example.entities;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "persone")
@@ -15,6 +16,9 @@ public class Person {
 	private String email;
 	private LocalDate data_di_nascita;
 	private char sesso;
+
+	@ManyToMany
+	private Set<GaraDiAtletica> gareDiAtletica;
 
 
 	@OneToMany(mappedBy = "persona")
